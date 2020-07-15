@@ -9,7 +9,7 @@
   const itemBodyTmpl = (node) => {
     const propKeys = Object.keys(node.PROPS);
     const days = ORG.Settings.getDayNames();
-    return `<div class="body">${node.CLOSED ? `<div class="cls">CLOSED: <span class="ts">${writeTimestamp(node.CLOSED, days, 1)}</span></div>` : ""}${node.DEADLINE ? `<div class="dl">DEADLINE: <span class="ts">${writeTimestamp(node.DEADLINE, days)}</span></div>` : ""}${node.SCHEDULED ? `<div class="sch">SCHEDULED: <span class="ts">${writeTimestamp(node.SCHEDULED, days)}</span></div>` : ""}${propKeys.length ? `<div class="props collapsed"><div class="collapsible">:PROPERTIES:</div>${propKeys.map((key) => `<div><span class="lvl2">:${key}: </span><span>${markup(node.PROPS[key])}</span></div>`).join("")}<div class="orgdim">:END:</div></div>` : ""}${node.TEXT.length ? `<pre class="txt">${parseDrawers(node.TEXT)}</pre>` : ""}</div>`;
+    return `<div class="body">${node.CLOSED ? `<div class="cls">CLOSED: <span class="ts">${writeTimestamp(node.CLOSED, days, 1)}</span></div>` : ""}${node.DEADLINE ? `<div class="dl">DEADLINE: <span class="ts">${writeTimestamp(node.DEADLINE, days)}</span></div>` : ""}${node.SCHEDULED ? `<div class="sch">SCHEDULED: <span class="ts">${writeTimestamp(node.SCHEDULED, days)}</span></div>` : ""}${propKeys.length ? `<div class="props collapsed"><div class="collapsible">:PROPERTIES:</div>${propKeys.map((key) => `<div><span class="lvl2">:${key}: </span><span>${markup(node.PROPS[key])}</span></div>`).join("")}<div class="orgdim">:END:</div></div>` : ""}${node.TEXT.length ? `<pre class="txt">${parseDrawers(node.TEXT).replaceAll('-','·')}</pre>` : ""}</div>`;
   };
 
   const itemTmpl = (node, body = 1, collapsed = 0) => `<li class="${collapsed ? "collapsed " : ""}${body ? "orgupdated " : ""}lvl${node.LVL % 3}${archiveRE.test(node.TAGS) ? " orgarchive" : ""}" style="padding-left:${(node.LVL - 1) * 15 + 24}px" data-lvl="${node.LVL}">
@@ -239,6 +239,7 @@
       return $cursor.is(".inedit,.orgbuffertext") ? $cursor.find("input").textFocus() : updateHeadingBody($cursor).cycle();
     }],
     "shift+tab": () => $orgpage.find(".orgnavbar .cycle a").click(),
+    "meta+backspace": () => events.delete($("#cursor", $orgpage),$orgpage),
     "ctrl+l": () => $("#cursor", $orgpage).scrollTo(),
     "ctrl+return": [() => $orgpage.find(".orgnavbar .add a").click(), {
       "delegate": "input,textarea",
@@ -312,15 +313,15 @@
         }
       }
     },
-    "n": ORG.Keyboard.common.cursorDown,
+    "j": ORG.Keyboard.common.cursorDown,
     "down": [ORG.Keyboard.common.cursorDown, {
       "delegate": "input",
       "fn": (ev) => $(ev.target).next().focus(),
     }],
-    "p": ORG.Keyboard.common.cursorUp,
+    "h": ORG.Keyboard.common.cursorUp,
     "up": ORG.Keyboard.common.cursorUp,
-    "f": ORG.Keyboard.common.cursorForward,
-    "b": ORG.Keyboard.common.cursorBackward,
+    "l": ORG.Keyboard.common.cursorForward,
+    "k": ORG.Keyboard.common.cursorBackward,
     "u": ORG.Keyboard.common.cursorParent,
     "alt+<": ORG.Keyboard.common.cursorFirst,
     "alt+shift+<": ORG.Keyboard.common.cursorLast,
