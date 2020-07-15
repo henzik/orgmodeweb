@@ -18,7 +18,7 @@
   --insync: #ff0
 }
 * {box-sizing: border-box; margin: 0; padding: 0; outline: none;}
-html, input, textarea {font-family: 'monaco'}
+html, input, textarea {font-family: 'monaco','monaco'}
 button, input[type="button"]{
   background-color: var(--background);
   border: none; 
