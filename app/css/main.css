@@ -1,27 +1,27 @@
 :root {
-  --background: #222;
-  --button: #444;
+  --background: #1F2430;
+  --button: #1A1E27;
   --buttonActive: #777;
-  --buttonHover: #555;
-  --headingHover: #303030;
-  --cursor: #f00;
-  --cursorEdit: #0f0;
-  --dim: #777;
+  --buttonHover: #1A1E27;
+  --headingHover: #1A1E27;
+  --cursor: #FFD096;
+  --cursorEdit: #7ACDDE;
+  --dim: #707A8C;
   --link: #f5f;
-  --firstLevel: #0ff;
-  --secondLevel: #fa0;
-  --thirdLevel: #88f;
-  --text: #eee;
-  --timestamp: #aa1;
-  --sync: #0f0;
+  --firstLevel: #95e6cb;
+  --secondLevel: #bae67e;
+  --thirdLevel: #ffa7c4;
+  --text: #CBCCC6;
+  --timestamp: #ffd580;
+  --sync: #ADDB67;
   --conflict: #f00;
   --insync: #ff0
 }
 * {box-sizing: border-box; margin: 0; padding: 0; outline: none;}
-html, input, textarea {font-family: Consolas, monaco, monospace;}
+html, input, textarea {font-family: 'monaco'}
 button, input[type="button"]{
   background-color: var(--background);
-  border: none;
+  border: none; 
   color: var(--text);
   cursor: pointer;
 }
@@ -171,7 +171,7 @@ input[type="number"],input[type="text"],textarea {
 .orgfiles li:first-child {border-top: 1px solid var(--background);}
 .orgview li:before {
   color: inherit;
-  content: "* ";
+  content: "• ";
   float: left;
   font-size: 120%;
   margin: 0 -8px 0 -16px;
@@ -231,7 +231,7 @@ input[type="number"],input[type="text"],textarea {
 .lvl0 {color: var(--thirdLevel);}
 .orgtodo {color: var(--text); font-weight: bold;}
 .orgarchive .title, .orgarchive .orgtodo{color: var(--dim);}
-.pri {color: #080; font-style: italic;}
+.pri {color: #C691E8; font-style: italic;}
 .tag {float: right;}
 .sch,.dl,.cls,.collapsible, .orgdim {color: var(--dim);}
 .ts {color: var(--timestamp);}
